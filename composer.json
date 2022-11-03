@@ -1,0 +1,29 @@
+{
+  "name": "gillix/symfony-container-loader",
+  "type": "project",
+  "description": "Simple symfony DI containers loader",
+  "require": {
+    "php": "^8.0",
+    "ext-json": "*",
+    "ext-zend-opcache": "*",
+    "symfony/cache": "^6.0",
+    "symfony/config": "^6.0",
+    "symfony/event-dispatcher": "^6.0",
+    "symfony/dependency-injection": "^6.0",
+    "symfony/yaml": "^6.0",
+    "symfony/dotenv": "^6.0"
+  },
+  "require-dev": {
+    "ext-xdebug": "*",
+    "roave/security-advisories": "dev-latest"
+  },
+  "config": {
+    "preferred-install": "dist",
+    "sort-packages": true
+  },
+  "autoload": {
+    "psr-4": {
+      "glx\\DI\\Symfony\\": "."
+    }
+  }
+}
