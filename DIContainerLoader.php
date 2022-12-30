@@ -22,7 +22,7 @@ use Symfony\Component\Dotenv\Dotenv;
 use Symfony\Component\Dotenv\Exception\FormatException;
 use Symfony\Component\Dotenv\Exception\PathException;
 
-class DIContainer
+class DIContainerLoader
 {
     private static string $defaultConfigFile = __DIR__ . '/config/defaults.yaml';
     private static int $defaultConfigPriority = -100;
@@ -73,9 +73,9 @@ class DIContainer
         }
         $dotEnvLocation = realpath($dotEnvLocation);
 
-        if (!getenv('SHARED_KERNEL_LOCATION')) {
-            putenv('SHARED_KERNEL_LOCATION=' . dirname(__DIR__, 4));
-        }
+//        if (!getenv('SHARED_KERNEL_LOCATION')) {
+//            putenv('SHARED_KERNEL_LOCATION=' . dirname(__DIR__, 4));
+//        }
 
 
         // include module default config
