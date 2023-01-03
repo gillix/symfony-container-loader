@@ -46,7 +46,7 @@ class DIContainerLoader
         string $dotEnvLocation = null,
         string $cacheDir = null,
         bool $useDefaults = true,
-        callable $beforeCompile = null
+        ?callable $beforeCompile = null
 
     ): ContainerInterface
     {
@@ -138,7 +138,7 @@ class DIContainerLoader
     /**
      * @throws ContainerLoadingFailed
      */
-    private static function loadContainer(string $cacheKey, array $configFiles, callable $beforeCompile = null): ContainerInterface
+    private static function loadContainer(string $cacheKey, array $configFiles, ?callable $beforeCompile = null): ContainerInterface
     {
         $className = 'container_' . $cacheKey;
         $cacheDir = getenv('CACHE_DIR') . DIRECTORY_SEPARATOR . self::$cacheFolderName;
