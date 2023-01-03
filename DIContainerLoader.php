@@ -46,6 +46,7 @@ class DIContainerLoader
         string $dotEnvLocation = null,
         string $cacheDir = null,
         bool $useDefaults = true,
+        callable $beforeCompile = null
 
     ): ContainerInterface
     {
@@ -130,14 +131,14 @@ class DIContainerLoader
             $projectRoot,
             $configFiles,
             $dotEnvLocation,
-        ]), $configFiles);
+        ]), $configFiles, $beforeCompile);
     }
 
 
     /**
      * @throws ContainerLoadingFailed
      */
-    private static function loadContainer(string $cacheKey, array $configFiles): ContainerInterface
+    private static function loadContainer(string $cacheKey, array $configFiles, callable $beforeCompile = null): ContainerInterface
     {
         $className = 'container_' . $cacheKey;
         $cacheDir = getenv('CACHE_DIR') . DIRECTORY_SEPARATOR . self::$cacheFolderName;
@@ -167,6 +168,10 @@ class DIContainerLoader
                 // loading configs
                 foreach ($configFiles as $file) {
                     $loader->load($file);
+                }
+
+                if ($beforeCompile !== null) {
+                    $beforeCompile($container);
                 }
 
                 // compile
